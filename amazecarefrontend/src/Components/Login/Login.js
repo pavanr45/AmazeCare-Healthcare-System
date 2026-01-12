@@ -2,6 +2,8 @@ import { useState } from 'react';
 import { Link, Outlet, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import '../Register/Register.css';
+import api from "../api";
+
 
 function Login() {
 
@@ -43,31 +45,57 @@ function Login() {
         const user = { username, password };
 
         try {
-            const response = await axios.post("http://localhost:9090/api/users/login", user);
+            // const response = await axios.post("http://localhost:9090/api/users/login", user);
+            // const data = response.data;
+
+            // sessionStorage.setItem("token", data.token);
+            // sessionStorage.setItem("username", data.username);
+            // sessionStorage.setItem("role", data.role);
+
+            // let apiUrl = "";
+            // if (data.role.toUpperCase() === 'DOCTOR')
+            //     apiUrl = `http://localhost:9090/api/doctors/GetDoctorIdByUsername?username=${data.username}`;
+            // else if (data.role.toUpperCase() === 'PATIENT')
+            //     apiUrl = `http://localhost:9090/api/patients/GetPatientIdByUsername?username=${data.username}`;
+
+            // let userId = "";
+            // if (apiUrl !== "") {
+            //     const idResponse = await axios.get(apiUrl);
+            //     userId = idResponse.data;
+            //     sessionStorage.setItem("userId", userId);
+            // }
+
+            // alert("Login Success - " + data.username);
+
+            // if (data.role === "ADMIN") navigate("/admin-dashboard");
+            // if (data.role === "DOCTOR") navigate(`/doctor-dashboard/${userId}`);
+            // if (data.role === "PATIENT") navigate(`/patient-dashboard/${userId}`);
+            const response = await api.post("/api/users/login", user);
             const data = response.data;
 
             sessionStorage.setItem("token", data.token);
             sessionStorage.setItem("username", data.username);
             sessionStorage.setItem("role", data.role);
 
-            let apiUrl = "";
-            if (data.role.toUpperCase() === 'DOCTOR')
-                apiUrl = `http://localhost:9090/api/doctors/GetDoctorIdByUsername?username=${data.username}`;
-            else if (data.role.toUpperCase() === 'PATIENT')
-                apiUrl = `http://localhost:9090/api/patients/GetPatientIdByUsername?username=${data.username}`;
-
             let userId = "";
-            if (apiUrl !== "") {
-                const idResponse = await axios.get(apiUrl);
-                userId = idResponse.data;
-                sessionStorage.setItem("userId", userId);
+
+            if (data.role === "DOCTOR") {
+            const idRes = await api.get(`/api/doctors/GetDoctorIdByUsername?username=${data.username}`);
+            userId = idRes.data;
             }
+            else if (data.role === "PATIENT") {
+            const idRes = await api.get(`/api/patients/GetPatientIdByUsername?username=${data.username}`);
+            userId = idRes.data;
+            }
+
+            sessionStorage.setItem("userId", userId);
 
             alert("Login Success - " + data.username);
 
             if (data.role === "ADMIN") navigate("/admin-dashboard");
             if (data.role === "DOCTOR") navigate(`/doctor-dashboard/${userId}`);
             if (data.role === "PATIENT") navigate(`/patient-dashboard/${userId}`);
+
 
         } catch (error) {
             alert("Invalid credentials or backend not running. Try Demo Accounts.");
