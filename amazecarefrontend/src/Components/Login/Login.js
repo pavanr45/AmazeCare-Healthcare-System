@@ -32,7 +32,7 @@ function Login() {
 
             alert("Demo Login Successful - " + demoUser.username);
 
-            if (demoUser.role === "ADMIN") navigate("/admin-dashboard");
+            if (demoUser.role === "ADMIN") navigate("/admin");
             if (demoUser.role === "DOCTOR") navigate(`/doctor-dashboard/${demoUser.userId}`);
             if (demoUser.role === "PATIENT") navigate(`/patient-dashboard/${demoUser.userId}`);
 
