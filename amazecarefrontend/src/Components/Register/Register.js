@@ -1,7 +1,9 @@
 import { useState } from "react"; // Importing React and useState hook
-import axios from 'axios'; // Importing axios for API requests
+//import axios from 'axios'; // Importing axios for API requests
 import './Register.css';
 import { Link, useNavigate } from "react-router-dom";
+import api from "../../api";
+
 
 // Defining the Register component
 function Register() {
@@ -96,7 +98,9 @@ function Register() {
         // Send API request to register user
         try {
             // const response = await axios.post("http://localhost:9090/RegisterPatient", patient);
-              const response = await axios.post("http://localhost:9090/api/patients/register", patient);
+            //   const response = await axios.post("http://localhost:9090/api/patients/register", patient);
+            const response = await api.post("/api/patients/register", patient);
+
             console.log(response);
             alert("Registration successful!"); // Display success message
             navigate('/login'); // Redirect to patient dashboard
