@@ -28,16 +28,16 @@ public class SecurityConfig {
     public CorsConfigurationSource corsConfigurationSource() {
 
         CorsConfiguration config = new CorsConfiguration();
+        config.setAllowCredentials(true);
 
         config.setAllowedOrigins(Arrays.asList(
             "http://localhost:3000",
-            "https://amazecare-healthcare-system-production.vercel.app",
-            "https://amazecare-healthcare-system-jdmieplgp.vercel.app"
+            "https://amaze-care-healthcare-system-louk9oa1y.vercel.app",
+            "https://amazecare-healthcare-system-production.up.railway.app"
         ));
 
         config.setAllowedMethods(Arrays.asList("GET","POST","PUT","DELETE","OPTIONS"));
-        config.setAllowedHeaders(Arrays.asList("Authorization","Content-Type"));
-        config.setAllowCredentials(true);
+        config.setAllowedHeaders(Arrays.asList("*"));
 
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", config);
