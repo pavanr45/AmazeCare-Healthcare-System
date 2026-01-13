@@ -16,28 +16,27 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
-            .cors()   // 🔥 ENABLE CORS
+            .cors()
             .and()
             .csrf(csrf -> csrf.disable())
-            .authorizeHttpRequests(auth -> auth
-                .anyRequest().permitAll()
-            );
+            .authorizeHttpRequests(auth -> auth.anyRequest().permitAll());
 
         return http.build();
     }
 
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
+
         CorsConfiguration config = new CorsConfiguration();
 
         config.setAllowedOrigins(Arrays.asList(
             "http://localhost:3000",
-            "https://amaze-care-healthcare-system.vercel.app",
-            "https://amaze-care-healthcare-system-p2zxlla15.vercel.app"
+            "https://amazecare-healthcare-system-production.vercel.app",
+            "https://amazecare-healthcare-system-jdmieplgp.vercel.app"
         ));
 
         config.setAllowedMethods(Arrays.asList("GET","POST","PUT","DELETE","OPTIONS"));
-        config.setAllowedHeaders(Arrays.asList("*"));
+        config.setAllowedHeaders(Arrays.asList("Authorization","Content-Type"));
         config.setAllowCredentials(true);
 
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
