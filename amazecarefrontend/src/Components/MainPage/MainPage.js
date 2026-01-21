@@ -1,9 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
+
 import { Link } from "react-router-dom";
 //import 'bootstrap/dist/css/bootstrap.min.css'; // Import Bootstrap CSS
 import '../MainPage/MainPage.css'; // Import your custom CSS file
 
 const HomePage = () => {
+    const [menuOpen, setMenuOpen] = useState(false);
+
     return (
         <div>
             {/* Navbar Start */}
@@ -14,12 +17,12 @@ const HomePage = () => {
                         <a className="navbar-brand" href="#">
                             <img src="images/logo-no-background.png" className="img-fluid" width="200" height="200" alt="Logo" />
                         </a>
-                        <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <button className="navbar-toggler" onClick={() => setMenuOpen(!menuOpen)}>
+                            ☰
+                            </button>
 
-                            <i className="fa-solid fa-bars-staggered navbar-toggler-icon"></i>
-                        </button>
-                        <div className="collapse navbar-collapse justify-content-end" id="navbarNav">
+                        <div className={`navbar-collapse justify-content-end ${menuOpen ? "show" : ""}`}>
+
                             <ul className="navbar-nav menu-navbar-nav">
                                 <li className="nav-item">
                                     <a className="nav-link active" aria-current="page" href="#home">Home</a>

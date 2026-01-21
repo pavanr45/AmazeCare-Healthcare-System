@@ -554,3 +554,21 @@ body {
 .toggle-button {
     pointer-events: auto !important;
 }
+
+@media (max-width: 768px) {
+  .navbar-collapse {
+    display: none;
+    flex-direction: column;
+    background: white;
+    position: absolute;
+    top: 70px;
+    left: 0;
+    width: 100%;
+    z-index: 9999;
+    padding: 15px;
+  }
+
+  .navbar-collapse.show {
+    display: flex;
+  }
+}
