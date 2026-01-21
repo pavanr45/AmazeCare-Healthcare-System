@@ -533,3 +533,24 @@ p {
 body {
     padding-top: 80px;
 }
+
+/* ========== FORCE NAVBAR CLICKABLE ========== */
+
+/* Disable touch on banner & animation layers */
+.banner_wrapper,
+.banner_wrapper *,
+.top-right-sec,
+.animate-img,
+.aimg1,
+.aimg2 {
+    pointer-events: none !important;
+}
+
+/* Enable touch only on navbar */
+.custom-navbar,
+.custom-navbar *,
+.navbar,
+.navbar *,
+.toggle-button {
+    pointer-events: auto !important;
+}
