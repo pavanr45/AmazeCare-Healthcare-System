@@ -88,7 +88,7 @@ function Register() {
             patientName: patientName,
             age: age,
             gender: gender,
-            dateOfBirth: dateOfBirth,
+            dateOfBirth: dateOfBirth.split("T")[0],
             contactNumber: contactNumber
         };
 

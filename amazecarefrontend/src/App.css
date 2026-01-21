@@ -1,0 +1,34 @@
+/* MOBILE RESPONSIVE FIX */
+@media (max-width: 768px) {
+  body {
+    overflow-x: hidden;
+  }
+
+  .container,
+  .dashboard,
+  .admin-dashboard,
+  .doctor-container,
+  .patient-container {
+    width: 100% !important;
+    padding: 10px !important;
+  }
+
+  table {
+    display: block;
+    overflow-x: auto;
+    width: 100%;
+  }
+
+  input, select, button {
+    width: 100% !important;
+    margin-bottom: 10px;
+  }
+
+  .sidebar {
+    display: none;   /* hide big sidebar on phone */
+  }
+
+  .content {
+    width: 100% !important;
+  }
+}
