@@ -498,3 +498,38 @@ p {
         padding-left: .625rem;
     }
 }
+/* ================================
+   MOBILE NAVBAR CLICK FIX
+================================ */
+
+/* Navbar must stay on top */
+.custom-navbar,
+.header_wrapper,
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 10000 !important;
+}
+
+/* Hamburger button must be topmost */
+.toggle-button,
+.navbar-toggler {
+    position: relative;
+    z-index: 10001 !important;
+}
+
+/* Banner & animations go below navbar */
+.banner_wrapper,
+.banner_wrapper *,
+.animate-img,
+.aimg1,
+.aimg2 {
+    z-index: 1 !important;
+}
+
+/* Push page content below fixed navbar */
+body {
+    padding-top: 80px;
+}
